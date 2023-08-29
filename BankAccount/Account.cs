@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,21 +34,29 @@ namespace BankAccount
         /// <summary>
         /// Add a specified amount of money to the account. Returns the new balance
         /// </summary>
-        /// <param name="amt"> The amount positive amount to deposit </param>
+        /// <param name="amount"> The amount positive amount to deposit </param>
         /// <returns> The new balance after the deposit </returns>
-        public double Deposit(double amt)
+        public double Deposit(double amount)
         {
-            Balance += amt;
+            if(amount <= 0)
+            {
+                throw new ArgumentOutOfRangeException($"The {nameof(amount)} must be more than 0");
+            }
+
+            Balance += amount;
             return Balance;
         }
 
         /// <summary>
         /// Withdraws a specified amount of money from the balance of the account
+        /// and returns the updated balance
         /// </summary>
-        /// <param name="amt"> The positive amount of money to be withdrawn from the balance </param>
-        public void Withdraw(double amt)
+        /// <param name="amount"> The positive amount of money to be withdrawn from the balance </param>
+        /// <returns> Returns the updated balance after withdrawal </returns>
+        public double Withdraw(double amount)
         {
-            throw new NotImplementedException();
+            Balance -= amount;
+            return Balance;
         }
     }
 }
