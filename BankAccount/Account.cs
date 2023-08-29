@@ -9,7 +9,7 @@ namespace BankAccount
     /// <summary>
     /// Represents a single customers bank account
     /// </summary>
-    internal class Account
+    public class Account
     {
         /// <summary>
         /// Creates an account with a specific owner and a balance of zero
